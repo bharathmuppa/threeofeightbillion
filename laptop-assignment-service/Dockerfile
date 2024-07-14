@@ -1,9 +1,10 @@
 FROM alpine:latest
 
+
 RUN apk update
 
 # Install JDK and Maven
-RUN apk add temurin-17-jdk
+RUN apk add openjdk21
 
 RUN apk add maven
 
@@ -16,5 +17,7 @@ COPY . .
 # Build the application
 RUN mvn clean package
 
+EXPOSE 8080
+EXPOSE 8081
 # Command to run the Spring Boot application
 CMD ["java", "-jar", "/app/target/laptops-0.0.0.jar"]
